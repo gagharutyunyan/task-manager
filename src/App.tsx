@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import uuid from "uuid/v4";
 import { ColumnsType } from "./interfaces";
 import Drop from "./components/Droppable/Droppable";
@@ -61,7 +61,11 @@ const columnsFromBackend = {
   }
 };
 
-const onDragEnd = (result: any, columns: any, setColumns: any): any => {
+const onDragEnd = (
+  result: DropResult,
+  columns: ColumnsType,
+  setColumns: React.Dispatch<React.SetStateAction<ColumnsType>>
+): void => {
   if (!result.destination) return;
   const { source, destination } = result;
   console.log(source, destination, columns);
